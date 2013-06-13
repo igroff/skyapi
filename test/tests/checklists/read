@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+./bin/start.sh ./bin/socket-command --command 'checklists/read' --data=one

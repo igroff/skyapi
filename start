@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+export SERVER_PORT=$1
+export ROOT_DIR=$PWD
+exec ./node_modules/.bin/coffee ./src/server.coffee

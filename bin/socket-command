@@ -1,0 +1,49 @@
+#!/usr/bin/env ./node_modules/coffee-script/bin/coffee
+# vim: ft=coffee
+#
+# This file is to facilitate the testing of the socket.io interface#
+#
+# As a convenience start will launch an arbitrary executable file in the directory
+# with it, so you can use it to launch this
+#
+# bin/start socket-command --command="checklists/write" --data='{"howdy": "ian"}'
+
+args      = require('optimist').argv
+io_client = require 'socket.io-client'
+
+server = "http://#{process.env.SERVER_HOST || 'localhost'}:#{process.env.SERVER_PORT || 8080}"
+if args.debug
+  console.log "server : " + server
+  console.log "command: " + args.command
+
+socket = io_client.connect server
+
+callback = (err, data) ->
+  if err
+    console.log "error"
+    console.log err
+  else
+    if data
+      console.log "returned: " + JSON.stringify(data, null, 2)
+    else
+      console.log "success"
+  process.exit()
+
+timeoutHandler = () ->
+  console.log "command " + args.command + " timed out"
+  process.exit()
+
+if args.data
+  if args.debug
+    console.log "data   : " + args.data
+  try
+    args.data = JSON.parse(args.data)
+  catch error
+    if args.debug
+      console.log "unable to parse data, passing raw"
+  socket.emit args.command, args.data, callback
+else
+  socket.emit args.command, callback
+
+
+setTimeout timeoutHandler, 5000

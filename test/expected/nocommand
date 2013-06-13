@@ -1,0 +1,3 @@
+error
+{ state: 'error',
+  message: 'unable to find command named: nocommand' }

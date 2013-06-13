@@ -1,0 +1,25 @@
+{
+  "name": "thing-game",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./bin/server",
+  "dependencies": {
+    "socket.io": "0.9.13",
+    "coffee-script": "1.6.2",
+    "express": "3.1.0",
+    "docopt": "0.4.0",
+    "underscore": "1.4.4",
+    "handlebars": "1.0.10",
+    "q": "0.9.2",
+    "optimist": "0.5.0",
+    "forever": "0.10.8"
+  },
+  "engine": {
+    "node": "0.10.8"
+  },
+  "repository": {
+    "type": "git",
+    "url":  "git://github.com/intimonkey/epic-query.git"
+  },
+  "os": ["!win32"]
+}
