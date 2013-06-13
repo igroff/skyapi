@@ -10,9 +10,12 @@ log           = require './log.coffee'
 child_process = require 'child_process'
 
 commandDirPath = path.join(process.env.ROOT_DIR, "/src/commands")
+# artifact, not sure this is really needed (static dir)
 app.use "/static", express.static(path.join(process.env.ROOT_DIR, "/static"))
 process.env.STORAGE_ROOT = process.env.STORAGE_ROOT || path.join(process.env.ROOT_DIR, "/storage")
 
+# get the sha under which we're running... assuming we're using git and are
+# in a valid repo of course
 child_process.exec "git log -1 --oneline | awk '{ print $1 }'", (err, stdout, stderr) ->
   if err
     process.env.RUNNING_SHA="error getting sha"
@@ -28,10 +31,10 @@ requireIfThere = (requirePath) ->
       log.info "no command found for %s, not loading", commandPath
     return null
 
-auth = requireIfThere 'authorize.coffee'
-
 io.configure () ->
-  io.set 'authorization', auth
+	# if there has been an authorization command provided, use it 
+	# otherwise... don't
+  io.set 'authorization', requireIfThere('authorize.coffee') || ->
   io.set 'log level', 0
 
 io.sockets.on 'connection', (socket) ->
@@ -74,8 +77,9 @@ io.sockets.on 'connection', (socket) ->
     else
       log.warn "no command found for %s", commandName
 
+# a convenience 'healthy' endpoint to that will provide a way to tell if the 
+# app is running and at what version
 app.all '*', (req, resp) -> resp.send {"message": "ok", "sha": process.env.RUNNING_SHA}
-log.debug "starting server"
 log.debug "ROOT_DIR #{process.env.ROOT_DIR}"
 log.debug "SERVER_PORT #{process.env.SERVER_PORT}"
 server.listen process.env.SERVER_PORT || 8080
