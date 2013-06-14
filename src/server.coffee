@@ -32,8 +32,8 @@ requireIfThere = (requirePath) ->
     return null
 
 io.configure () ->
-	# if there has been an authorization command provided, use it 
-	# otherwise... don't
+  # if there has been an authorization command provided, use it 
+  # otherwise...  use nothing
   io.set 'authorization', requireIfThere('authorize.coffee') || ->
   io.set 'log level', 0
 
@@ -58,11 +58,8 @@ io.sockets.on 'connection', (socket) ->
       require(commandPath).config? process.env
       commandFn = require(commandPath).execute
     catch requireError
-      if requireError.code isnt 'MODULE_NOT_FOUND'
-        log.error "error loading command #{commandName} #{requireError} #{typeof requireError}"
-        socket.emit 'commandError', "#{requireError}"
-        throw requireError
-      else
+      log.error requireError
+      if requireError.code is 'MODULE_NOT_FOUND'
         errorObject =
           state:"error"
           message: "unable to find command named: #{commandName}"
@@ -70,12 +67,19 @@ io.sockets.on 'connection', (socket) ->
           cb errorObject
         else
           socket.emit 'commandError', errorObject
+        # all done
+        return
+      else
+        log.error "error loading command #{commandName} #{requireError} #{typeof requireError}"
+        socket.emit 'commandError', "#{requireError}"
+        throw requireError
+
     if commandFn
-      if cb
-        commandArgs.push cb
+      commandArgs.push cb if cb
       commandFn.apply commandFn, commandArgs
     else
-      log.warn "no command found for %s", commandName
+      msg = "no execute method for command #{commandName}"
+      cb msg if cb
 
 # a convenience 'healthy' endpoint to that will provide a way to tell if the 
 # app is running and at what version
