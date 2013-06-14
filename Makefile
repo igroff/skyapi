@@ -1,9 +1,9 @@
-.PHONY: start stop test
+.PHONY: start stop test clean
 
 var/log: 
 	mkdir -p var/log
 
-start:
+start: node_modules
 	./bin/start.sh
 
 stop:
@@ -11,3 +11,9 @@ stop:
 
 test:
 	./test/run.sh
+
+node_modules:
+	npm install .
+
+clean:
+	rm -rf ./node_modules/
