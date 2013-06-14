@@ -1,5 +1,5 @@
 path  = require 'path'
-log   = require '../../log.coffee'
+log   = require 'simplog'
 fs    = require 'fs'
 util  = require 'util'
 

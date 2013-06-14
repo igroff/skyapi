@@ -6,7 +6,7 @@ io            = require('socket.io').listen(server)
 _             = require 'underscore'
 path          = require 'path'
 fs            = require 'fs'
-log           = require './log.coffee'
+log           = require 'simplog'
 child_process = require 'child_process'
 
 commandDirPath = path.join(process.env.ROOT_DIR, "/src/commands")
@@ -85,5 +85,5 @@ io.sockets.on 'connection', (socket) ->
 # app is running and at what version
 app.all '*', (req, resp) -> resp.send {"message": "ok", "sha": process.env.RUNNING_SHA}
 log.debug "ROOT_DIR #{process.env.ROOT_DIR}"
-log.debug "SERVER_PORT #{process.env.SERVER_PORT}"
+log.debug "SERVER_PORT #{process.env.SERVER_PORT || 8080}"
 server.listen process.env.SERVER_PORT || 8080

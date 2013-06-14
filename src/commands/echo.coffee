@@ -1,5 +1,5 @@
 _   = require 'underscore'
-log = require '../log.coffee'
+log = require 'simplog'
 
 exports.execute = (data, context, callback) ->
   log.debug " echo args: %j", data

@@ -1,7 +1,7 @@
 _     = require 'underscore'
 path  = require 'path'
 fs    = require 'fs'
-log   = require '../../log.coffee'
+log   = require 'simplog'
 
 storageRoot = process.env.CHECKLIST_STORAGE_ROOT ||
   path.join process.env.STORAGE_ROOT, "checklists"

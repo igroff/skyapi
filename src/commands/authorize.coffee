@@ -1,4 +1,4 @@
-log   = require "../log.coffee"
+log   = require "simplog"
 
 module.exports.execute = (handshakeData, cb) ->
   log.debug "handshake data: %j", handshakeData
