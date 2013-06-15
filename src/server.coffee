@@ -22,7 +22,7 @@ child_process.exec "git log -1 --oneline | awk '{ print $1 }'", (err, stdout, st
   else
     process.env.RUNNING_SHA=stdout.toString('utf8').replace("\n","")
 
-requireIfThere = (requirePath) ->
+requireIfPresent = (requirePath) ->
     commandPath = path.join commandDirPath, requirePath
     if fs.existsSync(commandPath)
       require(commandPath).config? process.env
@@ -34,7 +34,7 @@ requireIfThere = (requirePath) ->
 io.configure () ->
   # if there has been an authorization command provided, use it 
   # otherwise...  use nothing
-  io.set 'authorization', requireIfThere('authorize.coffee') || ->
+  io.set 'authorization', requireIfPresent('authorize.coffee') || ->
   io.set 'log level', 0
 
 io.sockets.on 'connection', (socket) ->
