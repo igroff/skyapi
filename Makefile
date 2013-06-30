@@ -6,7 +6,7 @@ var/log:
 start: node_modules var/log
 	./bin/start.sh
 
-exec_start:
+exec_start: node_modules var/log
 	./bin/start.sh managed
 
 stop:
