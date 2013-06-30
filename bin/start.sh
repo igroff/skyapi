@@ -6,7 +6,7 @@ export SERVER_HOST=127.0.0.1
 export SERVER_PORT=${SERVER_PORT-8080}
 source ${DIR}/nvm.sh
 
-nvm use 0.10.8 >> /dev/null 2>&1
+nvm use 0.10.10 >> /dev/null 2>&1
 
 if [ "$1x" == "x" ]; then
   ./node_modules/.bin/forever \

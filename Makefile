@@ -9,11 +9,11 @@ start: node_modules
 stop:
 	./bin/stop.sh
 
-test:
+test: node_modules src/server.coffee
 	./test/run.sh
 
 node_modules:
 	npm install .
 
-clean:
+clean: 
 	rm -rf ./node_modules/

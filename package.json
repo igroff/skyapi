@@ -14,10 +14,11 @@
     "q": "0.9.2",
     "optimist": "0.5.0",
     "forever": "0.10.8",
-    "simplog": "git+https://github.com/intimonkey/node-simplog.git"
+    "simplog": "0.0.3",
+    "command-server": "git+https://github.com/intimonkey/node-command-server.git"
   },
   "engine": {
-    "node": "0.10.8"
+    "node": "0.10.10"
   },
   "repository": {
     "type": "git",
