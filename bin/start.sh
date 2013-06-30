@@ -15,6 +15,8 @@ if [ "$1x" == "x" ]; then
     -a \
     --watch --watchDirectory ${ROOT_DIR}/src \
     -c ./node_modules/.bin/coffee ${ROOT_DIR}/src/server.coffee
+elif [ "$1" == "managed" ]; then
+    ./node_modules/.bin/coffee ${ROOT_DIR}/src/server.coffee
 else
   COMMAND_TO_RUN="$@"
   ${COMMAND_TO_RUN}
