@@ -7,7 +7,7 @@ start: node_modules var/log
 	./bin/start.sh
 
 exec_start: node_modules var/log
-	./bin/start.sh managed
+	exec ./bin/start.sh managed
 
 stop:
 	./bin/stop.sh
