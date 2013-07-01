@@ -3,8 +3,10 @@ path  = require 'path'
 fs    = require 'fs'
 log   = require 'simplog'
 
-storageRoot = process.env.OBJECT_STORAGE_ROOT ||
-  path.join process.env.STORAGE_ROOT, "objects"
+storageRoot = process.env.OBJECT_STORAGE_ROOT
+storageRoot = storageRoot || process.env.STORAGE_ROOT
+storageRoot = storageRoot || path.join(process.env.HOME, "storage")
+storageRoot = path.join storageRoot, 'cmdobjs'
 
 if not fs.existsSync storageRoot
   fs.mkdirSync storageRoot
