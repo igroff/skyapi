@@ -27,6 +27,6 @@ statusMessage =
   message: "ok",
   sha: process.env.RUNNING_SHA
 app.all '*', (req, resp) -> resp.send statusMessage
-log.debug "ROOT_DIR #{process.env.ROOT_DIR}"
-log.debug "SERVER_PORT #{process.env.SERVER_PORT || 8080}"
+log.info "ROOT_DIR #{process.env.ROOT_DIR}"
+log.info "SERVER_PORT #{process.env.SERVER_PORT || 8080}"
 socketCommandServer(app, commandDirPath).listen process.env.SERVER_PORT || 8080
