@@ -13,7 +13,10 @@ stop:
 	./bin/stop.sh
 
 test: node_modules src/server.coffee
+	-@$(MAKE) stop
+	$(MAKE) start -e STORAGE_ROOT=${PWD}/storage
 	./test/run.sh
+	-@$(MAKE) stop
 
 node_modules:
 	npm install .
