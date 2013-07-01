@@ -6,11 +6,15 @@ _                   = require 'underscore'
 log                 = require 'simplog'
 child_process       = require 'child_process'
 socketCommandServer = require 'command-server'
+fs                  = require 'fs'
 
 commandDirPath = path.join(process.env.ROOT_DIR, "/src/commands")
 # artifact, not sure this is really needed (static dir)
 app.use "/static", express.static(path.join(process.env.ROOT_DIR, "/static"))
-process.env.STORAGE_ROOT = process.env.STORAGE_ROOT || path.join(process.env.ROOT_DIR, "/storage")
+process.env.STORAGE_ROOT = process.env.STORAGE_ROOT || path.join(process.env.HOME, "/skyapi_storage")
+
+if not fs.existsSync process.env.STORAGE_ROOT
+  fs.mkdirSync process.env.STORAGE_ROOT
 
 statusMessage =
   message: "ok",
