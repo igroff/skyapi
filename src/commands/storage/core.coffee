@@ -7,6 +7,9 @@ storageRoot = process.env.OBJECT_STORAGE_ROOT
 storageRoot = storageRoot || process.env.STORAGE_ROOT
 storageRoot = storageRoot || path.join(process.env.HOME, "storage")
 storageRoot = path.join storageRoot, 'cmdobjs'
+log.info "OBJECT_STORAGE_ROOT: %s", proces.env.OBJECT_STORAGE_ROOT
+log.info "STORAGE_ROOT: %s", process.env.STORAGE_ROOT
+log.info "HOME: %s", process.env.HOME
 log.info "object storage using root: %s", storageRoot
 
 if not fs.existsSync storageRoot
