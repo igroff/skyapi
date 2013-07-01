@@ -7,11 +7,10 @@ storageRoot = process.env.OBJECT_STORAGE_ROOT
 storageRoot = storageRoot || process.env.STORAGE_ROOT
 storageRoot = storageRoot || path.join(process.env.HOME, "storage")
 storageRoot = path.join storageRoot, 'cmdobjs'
+log.info "object storage using root: %s", storageRoot
 
 if not fs.existsSync storageRoot
   fs.mkdirSync storageRoot
-
-log.debug "object storage using root: %s", storageRoot
 
 # given an object or a key calculate the path for the storage
 # of that object.  If an object is provided, the value of the
