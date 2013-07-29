@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"key":"oneonlywrittenhere"}'
+./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"type":"mine","key":"onlywrittenhere"}'
+./bin/start.sh ./bin/socket-command --command 'storage/list' --data=mine

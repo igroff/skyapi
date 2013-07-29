@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+./bin/start.sh ./bin/socket-command --command 'log/write' --data='{"key":"one"}'
+./bin/start.sh ./bin/socket-command --command 'log/read' --data=one
