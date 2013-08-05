@@ -1,7 +1,8 @@
-_     = require 'underscore'
-path  = require 'path'
-fs    = require 'fs'
-log   = require 'simplog'
+_      = require 'underscore'
+path   = require 'path'
+crypto = require 'crypto'
+fs     = require 'fs'
+log    = require 'simplog'
 
 storageRoot = path.join process.env.STORAGE_ROOT, 'cmdobjs'
 
@@ -34,6 +35,7 @@ module.exports.filePathForStorage = (obj, uid) ->
   objName = obj
   if _.isObject obj
     objName = obj.key || obj.__key || obj.__storageKey
+  throw "invalid key value #{JSON.stringify objName} type #{typeof objName}" if objName.match(/[^\w_-]/) != null 
   path.join(dirPathForStorage(obj, uid), objName + ".json")
 
 

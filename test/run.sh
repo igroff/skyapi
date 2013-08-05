@@ -14,7 +14,7 @@ function run_tests(){
       # directory (below us) and as a convenience this is the only directory
       # we'll do this to to limit the likelihood os screwing things up
       if [ -d ${PWD}/test/test_storage ]; then
-        find ${PWD}/test/test_storage/ -type f | xargs rm
+        find ${PWD}/test/test_storage/ -type f -delete
       fi
       mkdir -p `dirname $results_file`
       $test_file > $results_file 2>&1
