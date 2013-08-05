@@ -13,10 +13,9 @@ stop:
 	./bin/stop.sh
 
 test: node_modules src/server.coffee var/log
-	@rm var/log/*
 	-@$(MAKE) stop > test/test.log 2>&1
-	$(MAKE) start -e DEBUG=true -e STORAGE_ROOT=${PWD}/storage >> test/test.log 2>&1
-	./test/run.sh | tee test/test.log 2>&1
+	$(MAKE) start -e DEBUG=true -e STORAGE_ROOT=${PWD}/test/test_storage >> test/test.log 2>&1
+	./test/run.sh ${TEST_NAME}| tee test/test.log 2>&1
 	-@$(MAKE) stop > test/test.log 2>&1
 
 node_modules:

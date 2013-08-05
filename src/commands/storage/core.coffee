@@ -10,10 +10,13 @@ if not fs.existsSync storageRoot
 
 dirPathForStorage = (obj, uid) ->
   if _.isObject obj
-    objType = obj.type || obj.__type || obj.__storageType
+    objType = obj.type || obj.__type || obj.__storageType || "default"
   else
-    objType = obj || "default"
+    objType = "default"
+  log.debug "objType: #{JSON.stringify objType}"
   rootPath = if uid then path.join(storageRoot, uid) else storageRoot
+  if not fs.existsSync rootPath
+    fs.mkdirSync rootPath
   rootPath = path.join rootPath, objType
   if not fs.existsSync rootPath
     fs.mkdirSync rootPath
@@ -25,12 +28,13 @@ dirPathForStorage = (obj, uid) ->
 # key property will be used, otherwise the value will be assumed to
 # be a string key value
 module.exports.filePathForStorage = (obj, uid) ->
+  log.debug "filePathForStorage(#{JSON.stringify obj}, #{uid})"
   if not obj
     return null
   objName = obj
   if _.isObject obj
     objName = obj.key || obj.__key || obj.__storageKey
-  path.join(dirPathForStorage(), objName + ".json")
+  path.join(dirPathForStorage(obj, uid), objName + ".json")
 
 
 

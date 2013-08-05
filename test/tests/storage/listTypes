@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
-./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"key":"oneonlywrittenhere"}'
-./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"type":"mine","key":"onlywrittenhere"}'
+./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"key":"thisis_the_bad_one_you_should_not_see_it"}'
+./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"type":"mine","key":"thisistheoneyoushouldsee"}'
 ./bin/start.sh ./bin/socket-command --command 'storage/list' --data=mine
+./bin/start.sh ./bin/socket-command --command 'storage/list' --data='{"type":"mine"}'

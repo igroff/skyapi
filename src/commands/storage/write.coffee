@@ -6,6 +6,7 @@ log   = core.log
 # callback(err) 
 module.exports.execute = (obj, context, cb) ->
   storagePath = core.filePathForStorage(obj, context.uid)
+  log.debug "storing object #{JSON.stringify obj}" 
   log.info "storing data to #{storagePath}"
   if not storagePath
     cb("unable to create storage path for object")

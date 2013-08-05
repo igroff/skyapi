@@ -37,5 +37,9 @@ child_process.exec "git log -1 --oneline | awk '{ print $1 }'", (err, stdout, st
 app.all '*', (req, resp) -> resp.send statusMessage
 log.info "ROOT_DIR #{process.env.ROOT_DIR}"
 log.info "STORAGE_ROOT #{process.env.STORAGE_ROOT}"
+if not fs.existsSync(process.env.STORAGE_ROOT)
+  log.debug "creating storage root"
+  fs.mkdirSync(process.env.STORAGE_ROOT)
 log.info "SERVER_PORT #{process.env.SERVER_PORT || 8080}"
 socketCommandServer(app, commandDirPath).listen process.env.SERVER_PORT || 8080
+

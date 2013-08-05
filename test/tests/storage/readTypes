@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"key":"one"}'
+./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"key":"one","pants":"blue"}'
 ./bin/start.sh ./bin/socket-command --command 'storage/write' --data='{"type":"none","key":"one"}'
 ./bin/start.sh ./bin/socket-command --command 'storage/read' --data='{"key":"one","type":"none"}'
-./bin/start.sh ./bin/socket-command --command 'storage/read' --data=one
+./bin/start.sh ./bin/socket-command --command 'storage/read' --data='{"key":"one"}'

@@ -14,5 +14,9 @@ module.exports.execute = (data, context, cb) ->
     if err
       cb(err, null)
     else
+      core.log.debug "files #{files}"
       cb(null, name.replace(/\.json/, '') for name in files)
-  fs.readdir core.dirPathForStorage(data), loadHandler
+  data = {"type": data} if _.isString data
+  dirPathForStorage = core.dirPathForStorage data, context.uid
+  core.log.debug "dirPath: #{dirPathForStorage}"
+  fs.readdir dirPathForStorage, loadHandler

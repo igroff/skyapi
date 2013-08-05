@@ -1,0 +1,7 @@
+success
+returned: [
+  {
+    "logName": "pants",
+    "key": "one"
+  }
+]

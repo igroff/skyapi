@@ -5,6 +5,6 @@ returned: {
   "key": "one"
 }
 returned: {
-  "type": "none",
-  "key": "one"
+  "key": "one",
+  "pants": "blue"
 }
