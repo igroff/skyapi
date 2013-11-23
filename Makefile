@@ -1,4 +1,4 @@
-.PHONY: start stop test clean
+.PHONY: start stop test clean install
 
 var/log: 
 	mkdir -p var/log
@@ -20,6 +20,9 @@ test: node_modules src/server.coffee var/log
 
 node_modules:
 	npm install .
+
+install: node_modules
+	echo "installing"
 
 clean: 
 	rm -rf ./node_modules/
