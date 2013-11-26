@@ -11,7 +11,7 @@
 args      = require('optimist').argv
 io_client = require 'socket.io-client'
 
-server = "http://#{process.env.SERVER_HOST || 'localhost'}:#{process.env.SERVER_PORT || 8080}"
+server = "http://#{process.env.SERVER_HOST || 'localhost'}:#{process.env.PORT || 8080}"
 if args.debug
   console.log "server : " + server
   console.log "command: " + args.command

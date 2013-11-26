@@ -40,6 +40,6 @@ log.info "STORAGE_ROOT #{process.env.STORAGE_ROOT}"
 if not fs.existsSync(process.env.STORAGE_ROOT)
   log.debug "creating storage root"
   fs.mkdirSync(process.env.STORAGE_ROOT)
-log.info "SERVER_PORT #{process.env.SERVER_PORT || 8080}"
-socketCommandServer(app, commandDirPath).listen process.env.SERVER_PORT || 8080
+log.info "SERVER_PORT #{process.env.PORT || 8080}"
+socketCommandServer(app, commandDirPath).listen process.env.PORT || 8080
 

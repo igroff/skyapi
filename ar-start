@@ -1,2 +1,2 @@
 #! /usr/bin/env bash
-make -e SERVER_PORT=$1 exec_start
+make -e PORT=$1 exec_start

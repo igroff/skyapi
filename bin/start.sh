@@ -3,7 +3,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export ROOT_DIR=$PWD
 export BIN_DIR=${ROOT_DIR}/bin
 export SERVER_HOST=127.0.0.1
-export SERVER_PORT=${SERVER_PORT-8080}
+export PORT=${PORT-8080}
 source ${DIR}/nvm.sh
 
 nvm use 0.10.10 >> /dev/null 2>&1

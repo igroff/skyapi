@@ -20,6 +20,9 @@
   "engine": {
     "node": "0.10.10"
   },
+  "scripts": {
+    "start": "make exec_start"
+  },
   "repository": {
     "type": "git",
     "url":  "git://github.com/intimonkey/epic-query.git"
