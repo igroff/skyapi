@@ -36,6 +36,7 @@ child_process.exec "git log -1 --oneline | awk '{ print $1 }'", (err, stdout, st
 # app is running and at what version
 app.all '*', (req, resp) -> resp.send statusMessage
 log.info "ROOT_DIR #{process.env.ROOT_DIR}"
+log.debug "debug logging enabled"
 log.info "STORAGE_ROOT #{process.env.STORAGE_ROOT}"
 if not fs.existsSync(process.env.STORAGE_ROOT)
   log.debug "creating storage root"
